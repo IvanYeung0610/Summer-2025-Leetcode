@@ -19,7 +19,7 @@ public:
 		for (int i = 0; i < matrix.size(); ++i) {
 			for (int j = 0; j < matrix[0].size(); ++j) {
 				if (matrix[i][j] == 0) {
-					/*
+		/*
 			for the first row/col edge case:
 			0 indicates both first row and col need to be zeroed
 			-1 indicates only first row need to be zeroed
