@@ -42,7 +42,7 @@ public:
 		int n = board.size();
 		pair<int, int> child, curr;
 		queue<pair<int, int>> q;
-		unordered_set<int> visited;
+		vector<bool> visited(n*n, false);
 
 		int row;
 		int col;
@@ -64,8 +64,8 @@ public:
 
 				if (board[row][col] != -1) new_square = board[row][col];
 
-				if (visited.find(new_square) == visited.end()) {
-					visited.insert(new_square);
+				if (visited[new_square - 1] == false) {
+					visited[new_square - 1] = true;
 					child.first = new_square;
 					child.second = curr.second + 1;
 					q.push(child);
