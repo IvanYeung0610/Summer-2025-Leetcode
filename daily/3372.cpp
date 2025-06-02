@@ -10,7 +10,24 @@ using namespace std;
 
 class Solution {
 public:
-	// function that runs dfs and counts # of nodes reached from start in at most k edges
+	// functions that runs dfs and counts # of nodes reached from start in at most k edges
+	void dfsH(const vector<vector<int>>& adjList, int node, int k, int& count, vector<bool>& visited, int depth) {
+		if (depth > k) return;
+		visited[node] = true;
+		count++;
+		
+		for (int i : adjList[node]) {
+			if (visited[i] == false) {
+				dfsH(adjList, i, k, count, visited, depth + 1);
+			}
+		}
+	}
+	int dfs(const vector<vector<int>>& adjList, int start, int k) {
+		int count = 0;
+		vector<bool> visited(adjList.size(), false);
+		dfsH(adjList, start, k, count, visited, 0);
+		return count;
+	}
 	// function that runs bfs and counts # of nodes reached from start in at most k edges
 	int bfs(const vector<vector<int>>& adjList, int start, int k) {
 		int count = 0;
@@ -51,7 +68,7 @@ public:
 
 		// Creating adjacency list from edges2 array
 		maxN = edges2[0][0];
-		for (int i = 0; i < edges2.size(); ++i) { // find # of nodes in tree 1
+		for (int i = 0; i < edges2.size(); ++i) { // find # of nodes in tree 2
 			if (edges2[i][0] > maxN) maxN = edges2[i][0];
 			if (edges2[i][1] > maxN) maxN = edges2[i][1];
 		}
