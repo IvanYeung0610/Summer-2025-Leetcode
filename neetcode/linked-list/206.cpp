@@ -34,7 +34,7 @@ public:
             prev = res;
             res = nextNode;
         }
-        return res;
+        return prev;
         */
         // recursive solution
         if (head == nullptr) return nullptr;
